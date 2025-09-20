@@ -1,19 +1,48 @@
 package edu.txts.pj200925.controller;
 
 import edu.txts.pj200925.model.User;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import edu.txts.pj200925.service.UserService;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping({"/api/v1"})
+@FieldDefaults(level = AccessLevel.PRIVATE)
+//@RequiredArgsConstructor(access = AccessLevel.PUBLIC)
 public class UserController {
-
+	@Autowired
+	UserService userService;
 	@GetMapping
-	public String getUser(){
-		User user = User.builder().id(123L).name("Au Duong Vo Dich99").age(18).income(8.9)
-		.build();
-		return "Hello World" + user.toString();
-//		return "Hello World";
+	public ResponseEntity<List<User>> getAllUser(){
+		return ResponseEntity.ok(userService.getAllUser());
 	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable long id){
+		return ResponseEntity.ok(userService.getUserById(id));
+	}
+
+	@PostMapping
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		return ResponseEntity.ok(userService.addUser(user));
+	}
+
+	@PutMapping("/{id}")
+	public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User user){
+		return ResponseEntity.ok(userService.updateUser(id, user));
+	}
+
+	@DeleteMapping("/{id}")
+		public String deleteUser(@PathVariable long id){
+		 userService.deleteUser(id);
+		 return "User deleted";
+	}
+
+
 }
