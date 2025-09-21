@@ -12,7 +12,8 @@ import java.util.List;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE)
-//@RequiredArgsConstructor(access = AccessLevel.PUBLIC)
+//Su dung contructor bat buoc
+@RequiredArgsConstructor(access = AccessLevel.PUBLIC)
 public class UserService {
 	@Autowired
 	UserRepo userRepo;
