@@ -1,6 +1,6 @@
 package edu.txts.p210925.controller;
 
-import edu.txts.p210925.model.User210925;
+import edu.txts.p210925.model_entity_domain.User210925;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 //cmt2
 
 @RestController
-@RequestMapping({"/users"})
+@RequestMapping({"/api/v1/users"})
 public class User210925_Controller {
 
 	@GetMapping

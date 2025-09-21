@@ -1,4 +1,4 @@
-package edu.txts.p210925.model;
+package edu.txts.p210925.model_entity_domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
