@@ -4,7 +4,7 @@ import edu.txts.p210925.model.User210925;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-//return user
+//return user1
 
 @RestController
 @RequestMapping({"/users"})
