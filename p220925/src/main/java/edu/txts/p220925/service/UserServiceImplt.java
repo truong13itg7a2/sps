@@ -1,5 +1,7 @@
 package edu.txts.p220925.service;
 
+import edu.txts.p220925.exception.AppException;
+import edu.txts.p220925.exception.ErrorCode;
 import edu.txts.p220925.model.User220925;
 import edu.txts.p220925.repository.User220925Repo;
 import lombok.AccessLevel;
@@ -37,6 +39,9 @@ public class UserServiceImplt implements Itfc_UserService{
 	 */
 	@Override
 	public User220925 addUser(User220925 user) {
+		if (user220925Repo.existsUser220925ByUsername(user.getUsername())) {
+			throw new AppException(ErrorCode.USER_EXISTED);
+		}
 		return user220925Repo.save(user);
 	}
 
@@ -65,5 +70,13 @@ public class UserServiceImplt implements Itfc_UserService{
 	public void deleteUser(String id) {
 //		User220925 user220925 = getUserByID(id);
 		user220925Repo.deleteById(id);
+	}
+
+	/**
+	 *
+	 */
+	@Override
+	public void deleteAllUsers() {
+		user220925Repo.deleteAll();
 	}
 }

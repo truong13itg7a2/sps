@@ -10,4 +10,5 @@ public interface Itfc_UserService {
 	User220925 addUser(User220925 user);
 	User220925 updateUser(String id, User220925 user);
 	void deleteUser(String id);
+	void deleteAllUsers();
 }
