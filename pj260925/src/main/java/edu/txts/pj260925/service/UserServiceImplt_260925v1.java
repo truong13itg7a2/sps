@@ -2,6 +2,8 @@ package edu.txts.pj260925.service;
 
 import edu.txts.pj260925.dto.request.UserCreate_260925v1;
 import edu.txts.pj260925.dto.request.UserUpdate_260925v1;
+import edu.txts.pj260925.exception.ApiException;
+import edu.txts.pj260925.exception.ErrorCode;
 import edu.txts.pj260925.model.User_260925v1;
 import edu.txts.pj260925.repository.UserRepo_260925v1;
 import lombok.AccessLevel;
@@ -19,7 +21,8 @@ public class UserServiceImplt_260925v1 implements Itfc_UserService_260925v1{
 	@Override
 	public User_260925v1 create_user(UserCreate_260925v1 userCreate) {
 		if (userRepo.existsByUsername(userCreate.getUsername())) {
-			throw new RuntimeException("Username already exists");
+			throw new ApiException(ErrorCode.USER_EXISTED);
+//			"Username already exists"
 		}
 		User_260925v1 user = new User_260925v1();
 		user.setUsername(userCreate.getUsername());

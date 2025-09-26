@@ -1,5 +1,6 @@
 package edu.txts.pj260925.controller;
 
+import edu.txts.pj260925.dto.request.ApiResponse;
 import edu.txts.pj260925.dto.request.UserCreate_260925v1;
 import edu.txts.pj260925.dto.request.UserUpdate_260925v1;
 import edu.txts.pj260925.model.User_260925v1;
@@ -19,8 +20,11 @@ import java.util.List;
 public class UserController_260925v1 {
 	Itfc_UserService_260925v1 userService;
 	@PostMapping
-	public User_260925v1 create(@Valid @RequestBody UserCreate_260925v1 user) {
-		return userService.create_user(user);
+	public ApiResponse<User_260925v1> create(@Valid @RequestBody UserCreate_260925v1 user) {
+		ApiResponse<User_260925v1> apiResponse = new ApiResponse<>();
+		apiResponse.setResult(userService.create_user(user));
+
+		return apiResponse;
 	}
 
 	@GetMapping({"/users"})

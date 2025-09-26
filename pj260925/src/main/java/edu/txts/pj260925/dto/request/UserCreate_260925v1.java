@@ -13,10 +13,12 @@ import java.time.LocalDate;
 @Setter
 @Getter
 public class UserCreate_260925v1 {
-	@Size(min = 6, max = 50,message = "Username must start with 6 characters")
+	@Size(min = 6, max = 255,message = "Username must start with 6 characters")
 	@NotBlank(message = "Username not Blank, please...")
-			@NotEmpty(message = "Username not Empty, please...")
+	@NotEmpty(message = "Username not Empty, please...")
 	String username;
+	@NotEmpty(message = "Password not Empty, please...")
+	@Size(min = 8, max = 255,message = "Password must start with 8 characters")
 	String password;
 	String firstName;
 	String lastName;

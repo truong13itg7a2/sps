@@ -1,10 +1,10 @@
 package edu.txts.pj260925.exception;
 
+import edu.txts.pj260925.dto.request.ApiResponse;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -16,12 +16,24 @@ import java.util.stream.Collectors;
 
 //@ControllerAdvice
 @RestControllerAdvice
-public class GlobalException {
+public class GlobalExceptionHandler {
 
 	/*@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<String> runtimeExceptionHandler(RuntimeException e) {
 		return ResponseEntity.badRequest().body(e.getMessage());
 	}*/
+	@ExceptionHandler(ApiException.class)
+	public ResponseEntity handleApiException(ApiException ex) {
+		ErrorCode errorCode = ex.getErrorCode();
+		ApiResponse apiResponse = new ApiResponse();
+		return ResponseEntity
+				.status(errorCode.getHttpStatus())
+				.body(Map.of(
+						"timestamp", LocalDateTime.now(),
+						"errorCode", errorCode.getCode(),
+						"message", errorCode.getMessage()
+				));
+	}
 	@ExceptionHandler(RuntimeException.class)
 	public ResponseEntity<ErrorResponse> handleRuntime(RuntimeException ex) {
 		/*Map<String, Object> body = new HashMap<>();
