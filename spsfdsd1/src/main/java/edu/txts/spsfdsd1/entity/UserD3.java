@@ -10,13 +10,14 @@ import lombok.experimental.FieldDefaults;
 import java.time.LocalDate;
 
 @Entity
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
 @Setter
-@Builder
-@AllArgsConstructor
+@ToString
 @NoArgsConstructor
-public class UserD2 {
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class UserD3 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	String id;
@@ -24,7 +25,5 @@ public class UserD2 {
 	String password;
 	String firstName;
 	String lastName;
-	LocalDate dob;
-//	Set<String> roles;
-//	Set<String> roles;
+	LocalDate birthDate;
 }

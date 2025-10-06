@@ -4,18 +4,18 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDate;
-import java.util.Set;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class UserD2_Response {
+@NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class UserD3_Response {
+	String id;
 	String username;
-	//	String password = "*********";
+	String password;
 	String firstName;
 	String lastName;
-	LocalDate dob;
-	Set<String> roles;
+	LocalDate birthDate;
+	String description = "This is a UserD3_Response";
 }
