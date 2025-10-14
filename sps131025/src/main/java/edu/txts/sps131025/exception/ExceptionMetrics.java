@@ -14,15 +14,11 @@ import java.time.Duration;
 @Component
 public class ExceptionMetrics {
 
-	private final MeterRegistry meterRegistry;
 	private final Counter businessExceptionCounter;
 	private final Counter validationExceptionCounter;
 	private final Counter genericExceptionCounter;
 
 	public ExceptionMetrics(MeterRegistry meterRegistry) {
-		this.meterRegistry = meterRegistry;
-
-		// Initialize counters
 		this.businessExceptionCounter = Counter.builder("app.exceptions.business")
 				.description("Number of business exceptions")
 				.register(meterRegistry);
@@ -52,13 +48,5 @@ public class ExceptionMetrics {
 
 	public void recordGenericException() {
 		genericExceptionCounter.increment();
-	}
-
-	// Method để record execution time
-	public void recordExecutionTime(String methodName, long durationMs) {
-		Timer.builder("app.method.execution.time")
-				.tag("method", methodName)
-				.register(meterRegistry)
-				.record(Duration.ofMillis(durationMs));
 	}
 }

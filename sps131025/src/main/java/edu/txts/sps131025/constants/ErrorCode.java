@@ -1,29 +1,33 @@
 package edu.txts.sps131025.constants;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+import java.util.Arrays;
+import java.util.Optional;
+
+@Getter
+@AllArgsConstructor
 public enum ErrorCode {
 	// Common errors
-	INTERNAL_SERVER_ERROR("COMMON_001", "Internal server error"),
-	INVALID_INPUT_VALUE("COMMON_002", "Invalid input value"),
-	METHOD_NOT_ALLOWED("COMMON_003", "Method not allowed"),
+	INTERNAL_SERVER_ERROR("COMMON_001", "Internal server error", HttpStatus.INTERNAL_SERVER_ERROR),
+	INVALID_INPUT_VALUE("COMMON_002", "Invalid input value", HttpStatus.BAD_REQUEST),
+	METHOD_NOT_ALLOWED("COMMON_003", "Method not allowed", HttpStatus.METHOD_NOT_ALLOWED),
 
 	// Business errors
-	USER_NOT_FOUND("USER_001", "User not found"),
-	USER_ALREADY_EXISTS("USER_002", "User already exists"),
-	INVALID_CREDENTIALS("AUTH_001", "Invalid credentials"),
-	ACCESS_DENIED("AUTH_002", "Access denied"),
-
-	// Resource errors
-	RESOURCE_NOT_FOUND("RESOURCE_001", "Resource not found"),
-	DUPLICATE_RESOURCE("RESOURCE_002", "Duplicate resource");
+	USER_NOT_FOUND("USER_001", "User not found", HttpStatus.NOT_FOUND),
+	USER_ALREADY_EXISTS("USER_002", "User already exists", HttpStatus.CONFLICT),
+	INVALID_CREDENTIALS("AUTH_001", "Invalid credentials", HttpStatus.UNAUTHORIZED),
+	ACCESS_DENIED("AUTH_002", "Access denied", HttpStatus.FORBIDDEN);
 
 	private final String code;
 	private final String message;
+	private final HttpStatus httpStatus;
 
-	ErrorCode(String code, String message) {
-		this.code = code;
-		this.message = message;
+	public static Optional<ErrorCode> of(String code) {
+		return Arrays.stream(values())
+				.filter(errorCode -> errorCode.getCode().equals(code))
+				.findFirst();
 	}
-
-	public String getCode() { return code; }
-	public String getMessage() { return message; }
 }

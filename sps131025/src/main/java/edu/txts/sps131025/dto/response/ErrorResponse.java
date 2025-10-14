@@ -1,45 +1,39 @@
 package edu.txts.sps131025.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import edu.txts.sps131025.constants.ErrorCode;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
-@Setter
 @Getter
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ErrorResponse {
-	private String timestamp;
-	private String code;
-	private String message;
-	private String path;
-	private Map<String, Object> details;
-	private String traceId; // For distributed tracing
+	@Builder.Default
+	private final String timestamp = Instant.now().toString();
 
-	public ErrorResponse(String code, String message, String path) {
-		this.timestamp = Instant.now().toString();
-		this.code = code;
-		this.message = message;
-		this.path = path;
-		this.details = new HashMap<>();
+	private final String code;
+	private final String message;
+	private final String path;
+	private final Map<String, Object> details;
+	private final String traceId;
+
+	// Static factory methods
+	public static ErrorResponseBuilder from(ErrorCode errorCode) {
+		return ErrorResponse.builder()
+				.code(errorCode.getCode())
+				.message(errorCode.getMessage());
 	}
 
-	// Builder pattern
 	public static ErrorResponse of(ErrorCode errorCode, String path) {
-		return new ErrorResponse(errorCode.getCode(), errorCode.getMessage(), path);
+		return ErrorResponse.builder()
+				.code(errorCode.getCode())
+				.message(errorCode.getMessage())
+				.path(path)
+				.build();
 	}
-
-	public ErrorResponse details(Map<String, Object> details) {
-		this.details = details;
-		return this;
-	}
-
-	public ErrorResponse traceId(String traceId) {
-		this.traceId = traceId;
-		return this;
-	}
-
-	// Getters and Setters
-	// ...
 }

@@ -8,6 +8,7 @@ import edu.txts.sps131025.service.impl.UserD5ServiceImpl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 @RestController
 @RequestMapping({"apid5/users"})
 @RequiredArgsConstructor
+@Validated
+@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserD5Controller {
 	UserD5ServiceImpl userD5Service;

@@ -9,11 +9,12 @@ import edu.txts.sps131025.repository.UserD5Repository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -52,4 +53,16 @@ public class UserD5ServiceImpl {
 	public void deleteAllUserD5s() {
 		userD5Repository.deleteAll();
 	}
+
+	/*@Override
+	public Optional<User> findById(UserId id) {
+		return userJpaRepository.findById(id.getValue())
+				.map(userEntityMapper::toDomain);
+	}
+	@Override
+	public User save(User user) {
+		UserEntity entity = userEntityMapper.toEntity(user);
+		UserEntity savedEntity = userJpaRepository.save(entity);
+		return userEntityMapper.toDomain(savedEntity);
+	}*/
 }
