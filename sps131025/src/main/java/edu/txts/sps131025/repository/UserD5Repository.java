@@ -1,6 +1,6 @@
 package edu.txts.sps131025.repository;
 
-import edu.txts.sps131025.model.UserD5;
+import edu.txts.sps131025.entity.UserD5;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

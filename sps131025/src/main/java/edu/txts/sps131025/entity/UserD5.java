@@ -1,4 +1,4 @@
-package edu.txts.sps131025.model;
+package edu.txts.sps131025.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

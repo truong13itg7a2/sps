@@ -4,14 +4,13 @@ import edu.txts.sps131025.dto.request.UserD5Create;
 import edu.txts.sps131025.dto.request.UserD5Update;
 import edu.txts.sps131025.dto.response.UserD5Response;
 import edu.txts.sps131025.mapper.UserD5Mapper;
-import edu.txts.sps131025.model.UserD5;
+import edu.txts.sps131025.entity.UserD5;
 import edu.txts.sps131025.repository.UserD5Repository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 @Slf4j

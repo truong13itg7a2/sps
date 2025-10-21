@@ -3,7 +3,7 @@ package edu.txts.sps131025.mapper;
 import edu.txts.sps131025.dto.request.UserD5Create;
 import edu.txts.sps131025.dto.request.UserD5Update;
 import edu.txts.sps131025.dto.response.UserD5Response;
-import edu.txts.sps131025.model.UserD5;
+import edu.txts.sps131025.entity.UserD5;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
