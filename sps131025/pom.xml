@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.txts</groupId>
-	<artifactId>sps131025</artifactId>
+	<artifactId>StandardizedSps</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sps131025</name>
 	<description>sps131025</description>

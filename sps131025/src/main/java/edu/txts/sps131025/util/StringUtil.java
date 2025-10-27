@@ -1,6 +1,5 @@
 package edu.txts.sps131025.util;
 
-package com.example.demo.util;
 
 public class StringUtil {
 
